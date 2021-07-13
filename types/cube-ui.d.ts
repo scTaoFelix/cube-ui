@@ -1,6 +1,7 @@
 import Vue from 'vue'
+
 import { CubeUIComponent } from './component'
-import { IPopup, IToast, IPicker, ICascadePicker, IDatePicker, ITimePicker, ISegmentPicker, IDialog, IActionSheet, IImagePreview, CreateAPIFn } from './components'
+
 /**
  * CubeUI 组件
  * CubeUI component common definition
@@ -84,62 +85,49 @@ export class Validator extends CubeUIComponent {}
 export class Upload extends CubeUIComponent {}
 /** Form Component */
 export class Form extends CubeUIComponent {}
-
-/** base CreatApi CubeUIComponent */
-export class CreateApiCubeUIComponent extends CubeUIComponent {
+// popup
+/** Popup Component */
+export class Popup extends CubeUIComponent {
   show(): any
   hide(): any
   remove(): any
-  $updateProps(options: object): any
-  static $create(options: object): CreateApiCubeUIComponent
-}
-/** Popup Component */
-export class Popup extends CreateApiCubeUIComponent {
-  static $create(options: IPopup): Popup
+  static $create(options: object): Popup
 }
 /** Toast Component */
-export class Toast extends CreateApiCubeUIComponent {
-  static $create(options: IToast): Toast
+export class Toast extends Popup {
+  static $create(options: object): Toast
 }
 /** Picker Component */
-export class Picker extends CreateApiCubeUIComponent {
-  setData(data: any[], selectedIndex: number[]): any
-  static $create(options: IPicker): Picker
+export class Picker extends Popup {
+  static $create(options: object): Picker
 }
 /** Cascade Picker Component */
-export class CascadePicker extends CreateApiCubeUIComponent {
-  setData(data: any[], selectedIndex: number[]): any
-  static $create(options: ICascadePicker): CascadePicker
+export class CascadePicker extends Popup {
+  static $create(options: object): CascadePicker
 }
 /** Date Picker Component */
-export class DatePicker extends CreateApiCubeUIComponent {
-  static $create(options: IDatePicker): DatePicker
+export class DatePicker extends Popup {
+  static $create(options: object): DatePicker
 }
 /** Time Picker Component */
-
-export class TimePicker extends CreateApiCubeUIComponent {
-  setTime(time: string|number): any
-  static $create(options: ITimePicker): TimePicker
+export class TimePicker extends Popup {
+  static $create(options: object): TimePicker
 }
-
 /** Segment Picker Component */
-export class SegmentPicker extends CreateApiCubeUIComponent {
-  static $create(options: ISegmentPicker): SegmentPicker
+export class SegmentPicker extends Popup {
+  static $create(options: object): SegmentPicker
 }
-
 /** Dialog Component */
-export class Dialog extends CreateApiCubeUIComponent {
-  static $create(options: IDialog): Dialog
+export class Dialog extends Popup {
+  static $create(options: object): Dialog
 }
-
 /** Action Sheet Component */
-export class ActionSheet extends CreateApiCubeUIComponent {
-  static $create(options: IActionSheet): ActionSheet
+export class ActionSheet extends Popup {
+  static $create(options: object): ActionSheet
 }
-
 /** ImagePreview Component */
-export class ImagePreview extends CreateApiCubeUIComponent {
-  static $create(options: IImagePreview): ImagePreview
+export class ImagePreview extends Popup {
+  static $create(options: object): ImagePreview
 }
 /** Drawer Component */
 export class Drawer extends CubeUIComponent {
@@ -168,25 +156,23 @@ export class RecycleList extends CubeUIComponent {}
 // Vue prototype $createXx
 declare module 'vue/types/vue' {
   interface Vue {
-    /** create Popup instance */
-    $createPopup: CreateAPIFn<IPopup, Popup>
     /** create Toast instance */
-    $createToast: CreateAPIFn<IToast, Toast>
+    $createToast(options: object): Toast
     /** create Picker instance */
-    $createPicker: CreateAPIFn<IPicker, Picker>
+    $createPicker(options: object): Picker
     /** create CascadePicker instance */
-    $createCascadePicker: CreateAPIFn<ICascadePicker, CascadePicker>
+    $createCascadePicker(options: object): CascadePicker
     /** create DatePicker instance */
-    $createDatePicker: CreateAPIFn<IDatePicker, DatePicker>
+    $createDatePicker(options: object): DatePicker
     /** create TimePicker instance */
-    $createTimePicker: CreateAPIFn<ITimePicker, TimePicker>
+    $createTimePicker(options: object): TimePicker
     /** create SegmentPicker instance */
-    $createSegmentPicker: CreateAPIFn<ISegmentPicker, SegmentPicker>
+    $createSegmentPicker(options: object): SegmentPicker
     /** create Dialog instance */
-    $createDialog: CreateAPIFn<IDialog, Dialog>
+    $createDialog(options: object): Dialog
     /** create ActionSheet instance */
-    $createActionSheet: CreateAPIFn<IActionSheet, ActionSheet> 
+    $createActionSheet(options: object): ActionSheet
     /** create ImagePreview instance */
-    $createImagePreview: CreateAPIFn<IImagePreview, ImagePreview>
+    $createImagePreview(options: object): ImagePreview
   }
 }

@@ -1,1 +1,0 @@
-export function describe(desc: string, fn: () => void): void
